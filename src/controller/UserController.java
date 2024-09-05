@@ -1,6 +1,5 @@
 package controller;
 
-import com.mysql.jdbc.Statement;
 import javax.swing.JOptionPane;
 import model.Conexion;
 import model.User;
