@@ -44,62 +44,68 @@
     );
 
 -- Crear la tabla de materias
-CREATE TABLE materias (
-    id_materia INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    id_profesor INT NOT NULL,
-    llave_acceso VARCHAR(10) NOT NULL UNIQUE,
-    FOREIGN KEY (id_profesor) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
-);
+
+    CREATE TABLE materias (
+        id_materia INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(100) NOT NULL,
+        id_profesor INT NOT NULL,
+        llave_acceso VARCHAR(10) NOT NULL UNIQUE,
+        FOREIGN KEY (id_profesor) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
+    );
 
 -- Crear la tabla de estudiantes_materias (tabla intermedia para la relación N:M entre estudiantes y materias)
-CREATE TABLE estudiantes_materias (
-    id_estudiante INT NOT NULL,
-    id_materia INT NOT NULL,
-    fecha_inscripcion DATE NOT NULL,
-    PRIMARY KEY (id_estudiante, id_materia),
-    FOREIGN KEY (id_estudiante) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_materia) REFERENCES materias(id_materia) ON DELETE CASCADE
-);
+
+    CREATE TABLE estudiantes_materias (
+        id_estudiante INT NOT NULL,
+        id_materia INT NOT NULL,
+        fecha_inscripcion DATE NOT NULL,
+        PRIMARY KEY (id_estudiante, id_materia),
+        FOREIGN KEY (id_estudiante) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+        FOREIGN KEY (id_materia) REFERENCES materias(id_materia) ON DELETE CASCADE
+    );
 
 -- Crear la tabla de tareas
-CREATE TABLE tareas (
-    id_tarea INT AUTO_INCREMENT PRIMARY KEY,
-    id_materia INT NOT NULL,
-    titulo VARCHAR(100) NOT NULL,
-    descripcion TEXT,
-    fecha_entrega DATE NOT NULL,
-    FOREIGN KEY (id_materia) REFERENCES materias(id_materia) ON DELETE CASCADE
-);
+
+    CREATE TABLE tareas (
+        id_tarea INT AUTO_INCREMENT PRIMARY KEY,
+        id_materia INT NOT NULL,
+        titulo VARCHAR(100) NOT NULL,
+        descripcion TEXT,
+        fecha_entrega DATE NOT NULL,
+        FOREIGN KEY (id_materia) REFERENCES materias(id_materia) ON DELETE CASCADE
+    );
 
 -- Crear la tabla de notas
-CREATE TABLE notas (
-    id_nota INT AUTO_INCREMENT PRIMARY KEY,
-    id_estudiante INT NOT NULL,
-    id_tarea INT NOT NULL,
-    nota DECIMAL(5,2) NOT NULL CHECK (nota >= 0 AND nota <= 100),
-    comentario TEXT,
-    FOREIGN KEY (id_estudiante) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_tarea) REFERENCES tareas(id_tarea) ON DELETE CASCADE
-);
+
+    CREATE TABLE notas (
+        id_nota INT AUTO_INCREMENT PRIMARY KEY,
+        id_estudiante INT NOT NULL,
+        id_tarea INT NOT NULL,
+        nota DECIMAL(5,2) NOT NULL CHECK (nota >= 0 AND nota <= 100),
+        comentario TEXT,
+        FOREIGN KEY (id_estudiante) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+        FOREIGN KEY (id_tarea) REFERENCES tareas(id_tarea) ON DELETE CASCADE
+    );
 
 -- Crear la tabla de asistencia
- CREATE TABLE asistencia (
-    id_asistencia INT AUTO_INCREMENT PRIMARY KEY,
-    id_estudiante INT NOT NULL,
-    id_materia INT NOT NULL,
-    fecha_clase DATE NOT NULL,
-    estado ENUM('presente', 'ausente') NOT NULL,
-    FOREIGN KEY (id_estudiante) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_materia) REFERENCES materias(id_materia) ON DELETE CASCADE
-);
+
+     CREATE TABLE asistencia (
+        id_asistencia INT AUTO_INCREMENT PRIMARY KEY,
+        id_estudiante INT NOT NULL,
+        id_materia INT NOT NULL,
+        fecha_clase DATE NOT NULL,
+        estado ENUM('presente', 'ausente') NOT NULL,
+        FOREIGN KEY (id_estudiante) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+        FOREIGN KEY (id_materia) REFERENCES materias(id_materia) ON DELETE CASCADE
+    );
 
 -- Crear la tabla de notificaciones (opcional)
-CREATE TABLE notificaciones (
-    id_notificacion INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT NOT NULL,
-    mensaje TEXT NOT NULL,
-    leido BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
-);
+
+    CREATE TABLE notificaciones (
+        id_notificacion INT AUTO_INCREMENT PRIMARY KEY,
+        id_usuario INT NOT NULL,
+        mensaje TEXT NOT NULL,
+        leido BOOLEAN DEFAULT FALSE,
+        FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
+    );
 
