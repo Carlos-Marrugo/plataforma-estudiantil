@@ -23,3 +23,11 @@
       <a href="https://www.mediafire.com/file/p3zkq9gasghj403/Iconos.zip/file" target="blank">→ Descargar</a>
     </p>
   </div>
+
+  <div align="center">
+  <div style="border: 1px solid #4CAF50; border-radius: 5px; padding: 10px; margin-bottom: 10px; width: 80%;">
+    <p align="left">
+      <strong>Mini proyecto de Login </strong><br>
+      <a href="https://www.mediafire.com/file/n3sg1n35rbply7g/loginHospital.zip/file" target="blank">→ Descargar</a>
+    </p>
+  </div>
