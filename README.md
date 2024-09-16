@@ -1,4 +1,4 @@
-**Aplicacion de Escritorio(SISTEMA ACADEMICO) - Tutorias**
+**Aplicacion de Escritorio(SISTEMA ACADEMICO) - TUTORIAS SEGUNDO SEMESTRE**
 
 ![tutoriasJframeP1](https://github.com/user-attachments/assets/4c9123ed-cd3b-4bfc-82ba-b02d4a857331)
 ![tutoriasJframeP2](https://github.com/user-attachments/assets/d792e232-50ca-4dfc-88ab-53a32db1d94c)
