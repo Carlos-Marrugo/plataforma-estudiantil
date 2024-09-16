@@ -12,6 +12,14 @@
   <div style="border: 1px solid #4CAF50; border-radius: 5px; padding: 10px; margin-bottom: 10px; width: 80%;">
     <p align="left">
       <strong>Librerias Necesarias</strong><br>
-      <a href="https://www.mediafire.com/folder/meaxq4b2pkx9m/librerias" target="blank">-> Descargar</a>
+      <a href="https://www.mediafire.com/folder/meaxq4b2pkx9m/librerias" target="blank">→ Descargar</a>
+    </p>
+  </div>
+
+  <div align="center">
+  <div style="border: 1px solid #4CAF50; border-radius: 5px; padding: 10px; margin-bottom: 10px; width: 80%;">
+    <p align="left">
+      <strong>Carpeta de Iconos Miniminalistas</strong><br>
+      <a href="https://www.mediafire.com/file/p3zkq9gasghj403/Iconos.zip/file" target="blank">→ Descargar</a>
     </p>
   </div>
