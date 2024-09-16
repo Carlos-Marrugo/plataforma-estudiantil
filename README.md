@@ -12,7 +12,7 @@
   <div style="border: 1px solid #4CAF50; border-radius: 5px; padding: 10px; margin-bottom: 10px; width: 80%;">
     <p align="left">
       <strong>Librerias Necesarias</strong><br>
-      <a href="https://www.mediafire.com/folder/meaxq4b2pkx9m/librerias" target="blank">→ Descargar</a>
+      <a href="https://sites.google.com/view/programacioncmv/principal" target="blank">→ Descargar</a>
     </p>
   </div>
 
