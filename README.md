@@ -32,52 +32,6 @@
     </p>
   </div>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablas SQL - Plataforma Universitaria</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        .code-block {
-            background-color: #282C34;
-            color: #ABB2BF;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-family: monospace;
-            white-space: pre-wrap;
-        }
-        .code-block h3 {
-            color: #61AFEF;
-        }
-        .code {
-            background-color: #1E1E1E;
-            padding: 10px;
-            border-radius: 6px;
-            overflow-x: auto;
-        }
-        pre {
-            margin: 0;
-        }
-    </style>
-</head>
-<body>
-
 <div class="container">
     <h1>Tablas SQL - Plataforma Universitaria</h1>
 
