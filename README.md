@@ -5,3 +5,13 @@
 ![tutoriasJframeP3](https://github.com/user-attachments/assets/ba9a3a37-5631-46ec-993f-48a89dfaab9e)
 ![tutoriasJframeP4](https://github.com/user-attachments/assets/6d5097cc-29ec-4ddd-9ac2-f96841c03465)
 
+
+
+<h2 align="left">Herramientas para el Proyecto</h2>
+<div align="center">
+  <div style="border: 1px solid #4CAF50; border-radius: 5px; padding: 10px; margin-bottom: 10px; width: 80%;">
+    <p align="left">
+      <strong>Librerias Necesarias</strong><br>
+      <a href="https://www.mediafire.com/folder/meaxq4b2pkx9m/librerias" target="blank">-> Descargar</a>
+    </p>
+  </div>
