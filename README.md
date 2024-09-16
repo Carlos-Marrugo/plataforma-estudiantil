@@ -31,3 +31,15 @@
       <a href="https://www.mediafire.com/file/n3sg1n35rbply7g/loginHospital.zip/file" target="blank">→ Descargar</a>
     </p>
   </div>
+
+Tabla usuarios
+
+    CREATE TABLE usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR(50) NOT NULL UNIQUE,
+    contraseña VARCHAR(255) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    rol ENUM('estudiante', 'profesor', 'rector') NOT NULL,
+    correo VARCHAR(100) NOT NULL UNIQUE
+    );
+
