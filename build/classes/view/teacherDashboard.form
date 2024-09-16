@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -349,6 +349,18 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="profile">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/resources/ABOUT.png"/>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="30" y="10" width="50" height="60"/>
+                </Constraint>
+              </Constraints>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -386,7 +398,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Profesor Hamilton"/>
+                <Property name="text" type="java.lang.String" value="Profesor Carlos "/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -536,16 +548,16 @@
                                       <Data value="8/1/2024"/>
                                     </Column>
                                     <Column editable="true" title="nombre" type="java.lang.String">
-                                      <Data value="Steven"/>
+                                      <Data value="Sarah"/>
                                       <Data value="Carlos"/>
-                                      <Data value="Sharlok"/>
-                                      <Data value="Luz "/>
+                                      <Data value="Caroline"/>
+                                      <Data value="Peyo"/>
                                     </Column>
                                     <Column editable="true" title="apellido" type="java.lang.String">
-                                      <Data value="Java"/>
+                                      <Data value="Puello"/>
                                       <Data value="Marrugo"/>
-                                      <Data value="Uwu"/>
                                       <Data value="Xd"/>
+                                      <Data value="Perez"/>
                                     </Column>
                                     <Column editable="true" title="Identificacion" type="java.lang.String">
                                       <Data value="1122326654"/>
@@ -569,17 +581,17 @@
                                       <Renderer/>
                                     </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                      <Title value="apellido"/>
+                                      <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                      <Title value="Identificacion"/>
+                                      <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                      <Title value="Asistencia"/>
+                                      <Title/>
                                       <Editor/>
                                       <Renderer/>
                                     </Column>
