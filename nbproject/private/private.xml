@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Desktop/tutorias-colombo-2semestre/src/view/elijeTuRol.java</file>
-            <file>file:/C:/Users/user/Desktop/tutorias-colombo-2semestre/src/view/Login.java</file>
+            <file>file:/C:/Users/Estudiante/Desktop/plataforma-estudiantil/src/controller/UserController.java</file>
+            <file>file:/C:/Users/Estudiante/Desktop/plataforma-estudiantil/src/view/Login.java</file>
+            <file>file:/C:/Users/Estudiante/Desktop/plataforma-estudiantil/src/model/userSearch.java</file>
+            <file>file:/C:/Users/Estudiante/Desktop/plataforma-estudiantil/src/view/rectorDashboard.java</file>
+            <file>file:/C:/Users/Estudiante/Desktop/plataforma-estudiantil/src/view/elijeTuRol.java</file>
+            <file>file:/C:/Users/Estudiante/Desktop/plataforma-estudiantil/src/view/teacherDashboard.java</file>
+            <file>file:/C:/Users/Estudiante/Desktop/plataforma-estudiantil/src/sistemadeventas/SistemaDeVentas.java</file>
+            <file>file:/C:/Users/Estudiante/Desktop/plataforma-estudiantil/src/view/studentDashboard.java</file>
+            <file>file:/C:/Users/Estudiante/Desktop/plataforma-estudiantil/src/model/ConexionDB.java</file>
         </group>
     </open-files>
 </project-private>

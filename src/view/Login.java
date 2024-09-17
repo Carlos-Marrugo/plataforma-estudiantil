@@ -1,13 +1,14 @@
 package view;
 
-import controller.UserController;
+//import controller.UserController;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.User;
+import model.userSearch;
+//import model.User;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     @Override
@@ -45,7 +47,7 @@ public class Login extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jSeparator3 = new javax.swing.JSeparator();
         txtpassword = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnlogin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -114,13 +116,13 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel2.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 250, 20));
 
-        jButton1.setText("Log In");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnlogin.setText("Log In");
+        btnlogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnloginActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, -1));
+        jPanel2.add(btnlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, -1));
 
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 280, 240));
 
@@ -148,9 +150,32 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.login();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
+    // Obtén el usuario y la contraseña de los campos
+    String usuario = txtuser.getText().trim();
+    String contraseña = new String(txtpassword.getPassword()).trim();
+    
+    // Verifica si los campos están vacíos
+    if (usuario.isEmpty() || contraseña.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Por favor, complete ambos campos.");
+        return;
+    }
+
+    // Instancia de la clase que maneja el acceso a usuarios
+    userSearch us = new userSearch();
+    boolean loginExitoso = us.accesoUsuario(usuario, contraseña);  // Verificar las credenciales
+    
+    if (loginExitoso) {
+        // Si el login es exitoso, abre la ventana del panel de usuario y cierra la ventana de login
+        teacherDashboard acceso = new teacherDashboard();
+        acceso.setVisible(true);
+        this.dispose();  // Cierra la ventana de inicio de sesión
+    } else {
+        // Mensaje si el login falla
+        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.");
+    }
+
+    }//GEN-LAST:event_btnloginActionPerformed
 
     private void txtuserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtuserKeyPressed
         if (evt.getKeyCode() == evt.getKeyCode()) {
@@ -159,7 +184,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtuserKeyPressed
 
     private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
-
+        
     }//GEN-LAST:event_txtpasswordKeyPressed
 
     /**
@@ -198,7 +223,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnlogin;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -215,7 +240,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 
-    private void login() {
+    /*private void login() {
 
         if (!txtuser.getText().isEmpty() && !txtpassword.getText().isEmpty()) {
 
@@ -241,5 +266,5 @@ public class Login extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Compa los campos estan vacios no ves?");
         }
-    }
+    }*/
 }
