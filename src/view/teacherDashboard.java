@@ -1,14 +1,19 @@
 package view;
 
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+import model.Profesor;
+import model.ProfesorDAO;
+
 
 public class teacherDashboard extends javax.swing.JFrame {
     
     public teacherDashboard() {
         initComponents();
         this.setLocationRelativeTo(null);
-        /*this.setSize(new Dimension(1200, 700));
-        this.setExtendedState(this.MAXIMIZED_BOTH);*/
-        
+        cargarProfesoresEnTabla();
     }
     
     
@@ -44,9 +49,10 @@ public class teacherDashboard extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel63 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableProfesores = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jProgressBar6 = new javax.swing.JProgressBar();
         jPanel9 = new javax.swing.JPanel();
         jPanel24 = new javax.swing.JPanel();
@@ -57,17 +63,25 @@ public class teacherDashboard extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JSeparator();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jLabel60 = new javax.swing.JLabel();
         jProgressBar7 = new javax.swing.JProgressBar();
         jLabel61 = new javax.swing.JLabel();
-        txtuser = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        btnContratar = new javax.swing.JButton();
         jLabel62 = new javax.swing.JLabel();
-        txtuser1 = new javax.swing.JTextField();
+        txtApellidos = new javax.swing.JTextField();
         jSeparator9 = new javax.swing.JSeparator();
+        jLabel64 = new javax.swing.JLabel();
+        txtCorreo = new javax.swing.JTextField();
+        jSeparator10 = new javax.swing.JSeparator();
+        jLabel65 = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
+        jSeparator11 = new javax.swing.JSeparator();
+        jLabel66 = new javax.swing.JLabel();
+        txtuser4 = new javax.swing.JTextField();
+        jSeparator12 = new javax.swing.JSeparator();
+        comboBoxMateria = new javax.swing.JComboBox<>();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
 
@@ -297,10 +311,10 @@ public class teacherDashboard extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Profesor Carlos ");
+        jLabel14.setText("Rector Carlos");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 200, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 950, 50));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 920, 50));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -312,40 +326,48 @@ public class teacherDashboard extends javax.swing.JFrame {
         jPanel23.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 32, -1, -1));
         jPanel23.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 32, -1, -1));
         jPanel23.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 32, -1, -1));
-        jPanel23.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 44, 817, 10));
+        jPanel23.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 44, 730, 10));
         jPanel23.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 44, -1, 336));
         jPanel23.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 32, -1, -1));
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jLabel63.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel63.setText("Formulario de Asistencia");
+        jPanel23.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 280, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        tableProfesores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"8/1/2024", "Sarah", "Puello", "1122326654", null},
-                {"8/1/2024", "Carlos", "Marrugo", "1236452587", null},
-                {"8/1/2024", "Caroline", "Xd", "1236548798", null},
-                {"8/1/2024", "Peyo", "Perez", "1122333666", null}
+                {null, "", "", null, null, null},
+                {null, "", "", null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Date", "nombre", "apellido", "Identificacion", "Asistencia"
+                "Codigo", "Nombre", "Apellidos", "Correo", "Telefono", "Materia"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setRowHeight(22);
-        jScrollPane1.setViewportView(jTable1);
+        tableProfesores.setGridColor(new java.awt.Color(255, 255, 255));
+        tableProfesores.setRowHeight(22);
+        jScrollPane2.setViewportView(tableProfesores);
 
-        jPanel23.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 850, 250));
+        jPanel23.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 830, 250));
 
-        jLabel63.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel63.setText("Formulario de Asistencia");
-        jPanel23.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 280, 30));
+        jButton1.setText("Refresh");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel23.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
         jPanel12.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 360));
 
@@ -366,7 +388,7 @@ public class teacherDashboard extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 115, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab1", jPanel8);
@@ -379,34 +401,9 @@ public class teacherDashboard extends javax.swing.JFrame {
         jPanel25.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(67, 32, -1, -1));
         jPanel25.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 32, -1, -1));
         jPanel25.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 32, -1, -1));
-        jPanel25.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 44, 817, 10));
+        jPanel25.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 44, 370, 10));
         jPanel25.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 44, -1, 336));
         jPanel25.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 32, -1, -1));
-
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"8/25/2024", "Hackear la NASA"},
-                {"8/29/2024", "Terminar la tarea de Hamilton"}
-            },
-            new String [] {
-                "Fecha de Entrega", "Tarea"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTable2.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable2.setRowHeight(22);
-        jScrollPane2.setViewportView(jTable2);
-
-        jPanel25.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 400, 250));
 
         jLabel60.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel60.setForeground(new java.awt.Color(255, 255, 255));
@@ -418,51 +415,108 @@ public class teacherDashboard extends javax.swing.JFrame {
         jProgressBar7.setPreferredSize(new java.awt.Dimension(146, 10));
         jProgressBar7.setString("");
         jProgressBar7.setStringPainted(true);
-        jPanel25.add(jProgressBar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 360, 10));
+        jPanel25.add(jProgressBar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 220, 10));
 
         jLabel61.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel61.setText("Titulo de la Tarea");
-        jPanel25.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 130, 29));
+        jLabel61.setText("Nombre*:");
+        jPanel25.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, 260, 29));
 
-        txtuser.setBackground(new java.awt.Color(0, 0, 0, 0));
-        txtuser.setForeground(new java.awt.Color(255, 255, 255));
-        txtuser.setBorder(null);
-        txtuser.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombre.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombre.setBorder(null);
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtuserKeyPressed(evt);
+                txtNombreKeyPressed(evt);
             }
         });
-        jPanel25.add(txtuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 250, 20));
+        jPanel25.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, 280, 20));
 
         jSeparator8.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel25.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 250, 10));
+        jPanel25.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 280, 10));
 
-        jButton1.setText("Habilitar Tarea");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnContratar.setText("Contratar");
+        btnContratar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnContratarActionPerformed(evt);
             }
         });
-        jPanel25.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 130, -1));
+        jPanel25.add(btnContratar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 130, -1));
 
         jLabel62.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel62.setText("Fecha de Entrega");
-        jPanel25.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 100, 29));
+        jLabel62.setText("Apellido:*");
+        jPanel25.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 230, 29));
 
-        txtuser1.setBackground(new java.awt.Color(0, 0, 0, 0));
-        txtuser1.setForeground(new java.awt.Color(255, 255, 255));
-        txtuser1.setBorder(null);
-        txtuser1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtApellidos.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtApellidos.setForeground(new java.awt.Color(255, 255, 255));
+        txtApellidos.setBorder(null);
+        txtApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtuser1KeyPressed(evt);
+                txtApellidosKeyPressed(evt);
             }
         });
-        jPanel25.add(txtuser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 250, 20));
+        jPanel25.add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 280, 20));
 
         jSeparator9.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel25.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, 250, 10));
+        jPanel25.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 280, 20));
+
+        jLabel64.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel64.setText("Correo:*");
+        jPanel25.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 230, 29));
+
+        txtCorreo.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        txtCorreo.setBorder(null);
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyPressed(evt);
+            }
+        });
+        jPanel25.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, 280, 20));
+
+        jSeparator10.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator10.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel25.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 190, 280, 10));
+
+        jLabel65.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel65.setText("Telefono:*");
+        jPanel25.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, 230, 29));
+
+        txtTelefono.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtTelefono.setForeground(new java.awt.Color(255, 255, 255));
+        txtTelefono.setBorder(null);
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyPressed(evt);
+            }
+        });
+        jPanel25.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 280, 20));
+
+        jSeparator11.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator11.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel25.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 280, 10));
+
+        jLabel66.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel66.setText("Telefono:*");
+        jPanel25.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, 230, 29));
+
+        txtuser4.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtuser4.setForeground(new java.awt.Color(255, 255, 255));
+        txtuser4.setBorder(null);
+        txtuser4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtuser4KeyPressed(evt);
+            }
+        });
+        jPanel25.add(txtuser4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 280, 20));
+
+        jSeparator12.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator12.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel25.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 280, 10));
+
+        comboBoxMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Programacion" }));
+        jPanel25.add(comboBoxMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 270, 110, 30));
 
         jPanel24.add(jPanel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 920, 440));
 
@@ -479,39 +533,29 @@ public class teacherDashboard extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab2", jPanel9);
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
-        );
-
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jTabbedPane1.addTab("tab3", jPanel10);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGap(0, 920, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 365, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab4", jPanel11);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 950, 510));
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 920, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1041, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,10 +566,7 @@ public class teacherDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_1MousePressed
-        // TODO add your handling code here:
-        /*setColor(btn_1);
-        ind_1.setOpaque(true);
-        resetColor(new JPanel[]{btn_2,btn_3,btn_4}, new JPanel[]{ind_2,ind_3, ind_4});*/
+
     }//GEN-LAST:event_btn_1MousePressed
 
     private void btn_2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_2MouseReleased
@@ -577,19 +618,60 @@ public class teacherDashboard extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_btn_4MouseClicked
 
-    private void txtuserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtuserKeyPressed
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
         if (evt.getKeyCode() == evt.getKeyCode()) {
-            txtuser.requestFocus();
+            txtNombre.requestFocus();
         }
-    }//GEN-LAST:event_txtuserKeyPressed
+    }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void btnContratarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratarActionPerformed
+        String nombre = txtNombre.getText();
+        String apellidos = txtApellidos.getText();
+        String correo = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
+        String materia = (String) comboBoxMateria.getSelectedItem();
+
+
+        if (nombre.isEmpty() || apellidos.isEmpty() || correo.isEmpty() || telefono.isEmpty() || materia == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            ProfesorDAO profesorDAO = new ProfesorDAO();
+
+            LocalDate fechaContratacion = LocalDate.now();
+
+            profesorDAO.contratarProfesor(nombre, apellidos, correo, telefono, fechaContratacion, materia);
+
+            JOptionPane.showMessageDialog(this, "Profesor contratado exitosamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+
+            limpiarCampos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al contratar al profesor: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnContratarActionPerformed
+
+    private void txtApellidosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidosKeyPressed
+
+    private void txtCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoKeyPressed
+
+    private void txtTelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoKeyPressed
+
+    private void txtuser4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtuser4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtuser4KeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+        cargarProfesoresEnTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtuser1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtuser1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtuser1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -627,10 +709,12 @@ public class teacherDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnContratar;
     private javax.swing.JPanel btn_1;
     private javax.swing.JPanel btn_2;
     private javax.swing.JPanel btn_3;
     private javax.swing.JPanel btn_4;
+    private javax.swing.JComboBox<String> comboBoxMateria;
     private javax.swing.JPanel ind_1;
     private javax.swing.JPanel ind_2;
     private javax.swing.JPanel ind_3;
@@ -653,6 +737,9 @@ public class teacherDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -668,18 +755,50 @@ public class teacherDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JProgressBar jProgressBar6;
     private javax.swing.JProgressBar jProgressBar7;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel profile;
     private javax.swing.JPanel side_pane;
-    private javax.swing.JTextField txtuser;
-    private javax.swing.JTextField txtuser1;
+    private javax.swing.JTable tableProfesores;
+    private javax.swing.JTextField txtApellidos;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtuser4;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiarCampos() {
+        txtNombre.setText("");
+        txtApellidos.setText("");
+        txtCorreo.setText("");
+        txtTelefono.setText("");
+        comboBoxMateria.setSelectedIndex(0);
+    }
+
+    public void cargarProfesoresEnTabla() {
+        ProfesorDAO profesorDAO = new ProfesorDAO();
+        List<Profesor> listaProfesores = profesorDAO.obtenerProfesores();
+
+        DefaultTableModel model = (DefaultTableModel) tableProfesores.getModel();
+
+        model.setRowCount(0);
+
+        for (Profesor profesor : listaProfesores) {
+            model.addRow(new Object[]{
+                profesor.getCodigo(),
+                profesor.getNombre(),
+                profesor.getApellido(),
+                profesor.getCorreo(),
+                profesor.getTelefono(),
+                profesor.getMateria()
+            });
+        }
+    }
 }

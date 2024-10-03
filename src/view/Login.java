@@ -1,15 +1,18 @@
 package view;
 
 //import controller.UserController;
+import controller.LoginController;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import model.userSearch;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import model.UsuarioDAO;
 //import model.User;
-
 /**
  *
  * @author user
@@ -29,6 +32,18 @@ public class Login extends javax.swing.JFrame {
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("resources/perfil-botton_on.png"));
         return retValue;
+    }
+    
+     public JTextField getTxtUser() {
+        return txtuser; 
+    }
+
+    public JPasswordField getTxtPassword() {
+        return txtpassword;
+    }
+
+    public JButton getBtnLogin() {
+        return btnlogin;  
     }
 
     @SuppressWarnings("unchecked")
@@ -151,30 +166,22 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-    // Obtén el usuario y la contraseña de los campos
-    String usuario = txtuser.getText().trim();
-    String contraseña = new String(txtpassword.getPassword()).trim();
-    
-    // Verifica si los campos están vacíos
-    if (usuario.isEmpty() || contraseña.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Por favor, complete ambos campos.");
-        return;
-    }
+        String username = txtuser.getText();
+        String password = new String(txtpassword.getPassword());
 
-    // Instancia de la clase que maneja el acceso a usuarios
-    userSearch us = new userSearch();
-    boolean loginExitoso = us.accesoUsuario(usuario, contraseña);  // Verificar las credenciales
-    
-    if (loginExitoso) {
-        // Si el login es exitoso, abre la ventana del panel de usuario y cierra la ventana de login
-        teacherDashboard acceso = new teacherDashboard();
-        acceso.setVisible(true);
-        this.dispose();  // Cierra la ventana de inicio de sesión
-    } else {
-        // Mensaje si el login falla
-        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.");
-    }
+        UsuarioDAO userDao = new UsuarioDAO();
 
+        boolean isAuthenticated = userDao.authenticateUser(username, password);
+
+        if (isAuthenticated) {
+            
+            JOptionPane.showMessageDialog(this, "Login exitoso");
+            teacherDashboard dashboard = new teacherDashboard();
+            dashboard.setVisible(true);
+            this.dispose(); 
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Error de Login", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void txtuserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtuserKeyPressed
@@ -217,7 +224,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+            new Login().setVisible(true);
             }
         });
     }
@@ -240,31 +247,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 
-    /*private void login() {
-
-        if (!txtuser.getText().isEmpty() && !txtpassword.getText().isEmpty()) {
-
-            UserController usercontroller = new UserController();
-            User user = new User();
-
-            user.setEmail(txtuser.getText().trim());
-            user.setPassword(txtpassword.getText().trim());
-
-            try {
-                if (usercontroller.loginUser(user)) {
-                    JOptionPane.showMessageDialog(null, "Acesso Correcto");
-                    teacherDashboard open = new teacherDashboard();
-                    open.setVisible(true);
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuario o Clave incorrecta");
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Compa los campos estan vacios no ves?");
-        }
-    }*/
+    
 }
