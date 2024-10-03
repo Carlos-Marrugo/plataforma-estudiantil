@@ -3,6 +3,7 @@ package view;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 import java.time.LocalDate;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import model.Profesor;
 import model.ProfesorDAO;
@@ -14,13 +15,28 @@ public class teacherDashboard extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         cargarProfesoresEnTabla();
+        iniciarOpciones();
     }
     
+    public void iniciarOpciones(){
+        JMenuItem open = new JMenuItem("Mas Info");
+        JMenuItem editar = new JMenuItem("Editar");
+        JMenuItem eliminar = new JMenuItem("Despedir");
+        
+        ppMenuTabla.add(open);
+        ppMenuTabla.add(editar);
+        ppMenuTabla.add(eliminar);
+
+        
+        tableProfesores.setComponentPopupMenu(ppMenuTabla);
+
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ppMenuTabla = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         side_pane = new javax.swing.JPanel();
         btn_1 = new javax.swing.JPanel();
@@ -764,6 +780,7 @@ public class teacherDashboard extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPopupMenu ppMenuTabla;
     private javax.swing.JLabel profile;
     private javax.swing.JPanel side_pane;
     private javax.swing.JTable tableProfesores;
