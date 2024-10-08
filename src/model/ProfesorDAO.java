@@ -82,4 +82,26 @@ public class ProfesorDAO {
 
         return codigo;
     }
+    
+    
+    public void eliminarProfesor(String codigoProfesor) {
+        String sql = "DELETE FROM profesores WHERE codigo_profesor = ?";
+
+        try (Connection con = ConexionDB.conectar();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setString(1, codigoProfesor);
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Profesor eliminado con éxito.");
+            } else {
+                System.out.println("No se encontró el profesor con código: " + codigoProfesor);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar profesor: " + e.getMessage());
+        }
+    }
+    
 }

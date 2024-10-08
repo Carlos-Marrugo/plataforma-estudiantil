@@ -5,7 +5,12 @@
         <group>
             <file>file:/C:/Users/user/Desktop/plataforma-estudiantil/src/view/Login.java</file>
             <file>file:/C:/Users/user/Desktop/plataforma-estudiantil/src/model/ConexionDB.java</file>
-            <file>file:/C:/Users/user/Desktop/plataforma-estudiantil/src/model/userSearch.java</file>
+            <file>file:/C:/Users/user/Desktop/plataforma-estudiantil/src/model/Usuario.java</file>
+            <file>file:/C:/Users/user/Desktop/plataforma-estudiantil/src/view/studentDashboard.java</file>
+            <file>file:/C:/Users/user/Desktop/plataforma-estudiantil/src/model/Profesor.java</file>
+            <file>file:/C:/Users/user/Desktop/plataforma-estudiantil/src/model/UsuarioDAO.java</file>
+            <file>file:/C:/Users/user/Desktop/plataforma-estudiantil/src/model/ProfesorDAO.java</file>
+            <file>file:/C:/Users/user/Desktop/plataforma-estudiantil/src/view/teacherDashboard.java</file>
         </group>
     </open-files>
 </project-private>

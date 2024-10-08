@@ -5,9 +5,10 @@ import java.util.List;
 import java.time.LocalDate;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import model.Profesor;
 import model.ProfesorDAO;
-
 
 public class teacherDashboard extends javax.swing.JFrame {
     
@@ -17,8 +18,26 @@ public class teacherDashboard extends javax.swing.JFrame {
         cargarProfesoresEnTabla();
         iniciarOpciones();
     }
+     public void cargarProfesoresEnTabla() {
+        ProfesorDAO profesorDAO = new ProfesorDAO();
+        List<Profesor> listaProfesores = profesorDAO.obtenerProfesores();
+
+        DefaultTableModel model = (DefaultTableModel) tableProfesores.getModel();
+        model.setRowCount(0); 
+
+        for (Profesor profesor : listaProfesores) {
+            model.addRow(new Object[]{
+                profesor.getCodigo(),
+                profesor.getNombre(),
+                profesor.getApellido(),
+                profesor.getCorreo(),
+                profesor.getTelefono(),
+                profesor.getMateria()
+            });
+        }
+    }
     
-    public void iniciarOpciones(){
+   public void iniciarOpciones() {
         JMenuItem open = new JMenuItem("Mas Info");
         JMenuItem editar = new JMenuItem("Editar");
         JMenuItem eliminar = new JMenuItem("Despedir");
@@ -27,11 +46,33 @@ public class teacherDashboard extends javax.swing.JFrame {
         ppMenuTabla.add(editar);
         ppMenuTabla.add(eliminar);
 
-        
         tableProfesores.setComponentPopupMenu(ppMenuTabla);
 
+       
+        eliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = tableProfesores.getSelectedRow();
+
+                if (selectedRow != -1) { 
+                    
+                    String codigoProfesor = (String) tableProfesores.getValueAt(selectedRow, 0);
+
+                    
+                    int confirm = JOptionPane.showConfirmDialog(null, "seguro de que deseas eliminar al profesor?", "Confirmación", JOptionPane.YES_NO_OPTION);
+                    if (confirm == JOptionPane.YES_OPTION) {
+                       
+                        ProfesorDAO profesorDAO = new ProfesorDAO();
+                        profesorDAO.eliminarProfesor(codigoProfesor);
+
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Seleccione un profesor para eliminar.");
+                }
+            }
+        });
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -799,23 +840,5 @@ public class teacherDashboard extends javax.swing.JFrame {
         comboBoxMateria.setSelectedIndex(0);
     }
 
-    public void cargarProfesoresEnTabla() {
-        ProfesorDAO profesorDAO = new ProfesorDAO();
-        List<Profesor> listaProfesores = profesorDAO.obtenerProfesores();
-
-        DefaultTableModel model = (DefaultTableModel) tableProfesores.getModel();
-
-        model.setRowCount(0);
-
-        for (Profesor profesor : listaProfesores) {
-            model.addRow(new Object[]{
-                profesor.getCodigo(),
-                profesor.getNombre(),
-                profesor.getApellido(),
-                profesor.getCorreo(),
-                profesor.getTelefono(),
-                profesor.getMateria()
-            });
-        }
-    }
+  
 }
