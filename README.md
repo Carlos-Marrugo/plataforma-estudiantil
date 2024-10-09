@@ -136,13 +136,28 @@ CREATE TABLE asistencia (
         <h3>Crear la tabla de notificaciones (opcional)</h3>
         <div class="code">
             <pre>
-CREATE TABLE notificaciones (
-    id_notificacion INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT NOT NULL,
-    mensaje TEXT NOT NULL,
-    leido BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
+CREATE TABLE profesores (
+    id_profesor INT(11) NOT NULL AUTO_INCREMENT,
+    codigo_profesor VARCHAR(10) NOT NULL UNIQUE,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    correo_electronico VARCHAR(100) NOT NULL,
+    telefono VARCHAR(15) NULL,
+    fecha_contratacion DATE NULL,
+    materia VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id_profesor)
 );
+INSERT INTO profesores (id_profesor, codigo_profesor, nombre, apellido, correo_electronico, telefono, fecha_contratacion, materia) 
+VALUES
+(4, 'PROF004', 'Carlos', 'López', 'carlos.lopez@example.com', '555-4321', '2022-04-25', 'Algebra'),
+(5, 'PROF005', 'Sofía', 'González', 'sofia.gonzalez@example.com', '555-2468', '2022-05-30', 'Biología'),
+(16, 'PROF006', 'Carlos', 'Marrugo', 'carlos@gmail.com', '123456655465', '2024-10-02', 'Programacion'),
+(17, 'PROF007', 'Alejandra', 'Marrugo', 'alemarrugo@gmail.com', '1137524433', '2024-10-03', 'Programacion'),
+(18, 'PROF008', 'Steveson', 'Mier', 'stevenson@gmail.com', '113366555555', '2024-10-03', 'Programacion'),
+(19, 'PROF009', 'Valery', 'Projeto', 'val@gmail.com', '1133654789', '2024-10-03', 'Programacion'),
+(20, 'PROF010', 'Gabo', 'De Jesus', 'gabito@gmail.com', '123654444444', '2024-10-08', 'Programacion'),
+(21, 'PROF011', 'Haider', 'Cara', 'cara@gmail.com', '222233366655', '2024-10-08', 'Programacion');
+
             </pre>
         </div>
     </div>
